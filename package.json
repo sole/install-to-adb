@@ -1,0 +1,19 @@
+{
+  "name": "install-to-adb",
+  "version": "1.0.0",
+  "description": "installing apps to firefox os devices connected with adb",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sole",
+  "license": "Apache 2",
+  "dependencies": {
+    "adbkit": "^2.1.6",
+    "es6-promise": "^2.0.1",
+    "node-firefox-connect": "^1.0.0",
+    "node-firefox-find-app": "^1.0.0",
+    "node-firefox-install-app": "^1.0.0",
+    "portfinder": "^0.4.0"
+  }
+}
