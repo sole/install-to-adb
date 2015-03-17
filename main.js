@@ -3,38 +3,38 @@
 /* global console */
 /* global require */
 /* global process */
+/* global __dirname */
 
-var path = require('path');
 var connect = require('node-firefox-connect');
 var portfinder = require('portfinder');
 var adb = require('adbkit');
 var adbClient = adb.createClient();
 var Promise = require('es6-promise').Promise;
 var pushApp = require('push-app');
-var appPath = path.join(__dirname, 'node_modules', 'sample-packaged-app');
 
 portfinder.basePort = 9000;
 
-adbClient.listDevices()
-	.then(function(devices) {
-		console.log('found', devices.length, 'devices');
-		Promise.all(devices.map(forwardDevice))
-			.then(function(forwarded) {
-				console.log('forwarded:', forwarded.length);
-				return Promise.all(forwarded.map(connectToDevice));
-			})
-			.then(function(connected) {
-				console.log('installing app at', appPath);
-				return Promise.all(connected.map(function(dev) {
-					return pushApp(dev.client, appPath);
-				}));
-			})
-			.then(function(result) {
-					console.log('result', result);
-					process.exit(0);
-				});
-			});
+module.exports = installToADB;
 
+function installToADB(appPath) {
+
+	return adbClient.listDevices()
+		.then(function(devices) {
+			console.log('found', devices.length, 'devices');
+			return Promise.all(devices.map(forwardDevice));
+		})
+		.then(function(forwarded) {
+			console.log('forwarded:', forwarded.length);
+			return Promise.all(forwarded.map(connectToDevice));
+		})
+		.then(function(connected) {
+			console.log('installing app at', appPath);
+			return Promise.all(connected.map(function(dev) {
+				return pushApp(dev.client, appPath);
+			}));
+		});
+
+}
 
 function getPort() {
 	return new Promise(function(yay, nay) {
