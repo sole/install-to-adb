@@ -1,8 +1,15 @@
+'use strict';
+
+/* global console */
+/* global require */
+
+var path = require('path');
 var connect = require('node-firefox-connect');
 var portfinder = require('portfinder');
 var adb = require('adbkit');
 var adbClient = adb.createClient();
 var Promise = require('es6-promise').Promise;
+var pushApp = require('./pushApp');
 
 portfinder.basePort = 9000;
 
@@ -11,18 +18,25 @@ adbClient.listDevices()
 		console.log('found', devices.length, 'devices');
 		Promise.all(devices.map(forwardDevice))
 			.then(function(forwarded) {
-				console.log('forwarded:', forwarded);
+				console.log('forwarded:', forwarded.length);
 				return Promise.all(forwarded.map(connectToDevice));
 			})
-			.then(function(connected) {
+			/*.then(function(connected) {
 				console.log('yes? ->', connected);
 				return Promise.all(connected.map(listApps));
+			})*/
+			.then(function(connected) {
+				var appPath = path.join(__dirname, 'sampleApp');
+				console.log('installing app at', appPath);
+				return Promise.all(connected.map(function(dev) {
+					return pushApp(dev.client, appPath);
+				}));
 			})
-			.then(function(er) {
-				console.log('running apps', er);
-				process.exit(0);
+			.then(function(result) {
+					console.log('result', result);
+					process.exit(0);
+				});
 			});
-	});
 
 
 function getPort() {
@@ -60,6 +74,7 @@ function connectToDevice(options) {
 
 	return connect(port)
 		.then(function(client) {
+			console.log('connected at', port);
 			return {
 				id: options.id,
 				port: port,
