@@ -3,7 +3,7 @@
 /* global console */
 /* global require */
 /* global process */
-/* global __dirname */
+/* global module */
 
 var connect = require('node-firefox-connect');
 var portfinder = require('portfinder');
@@ -78,26 +78,6 @@ function connectToDevice(options) {
 				client: client
 			};
 		});
-}
-
-function listApps(options) {
-	var client = options.client;
-	console.log('list apps', options.port);
-	return new Promise(function(okCb, errCb) {
-		client.getWebapps(function(err, webapps) {
-			if(err) {
-				errCb(err);
-			} else {
-				webapps.listRunningApps(function(err, apps) {
-					if(err) {
-						errCb(err);
-					} else {
-						okCb(apps);
-					}
-				});
-			}
-		});
-	});
 }
 
 
