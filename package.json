@@ -14,6 +14,7 @@
     "node-firefox-connect": "^1.0.0",
     "node-firefox-find-app": "^1.0.0",
     "node-firefox-install-app": "^1.0.0",
+    "node-firefox-uninstall-app": "^1.0.0",
     "portfinder": "^0.4.0"
   }
 }

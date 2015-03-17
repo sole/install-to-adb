@@ -2,6 +2,7 @@
 
 /* global console */
 /* global require */
+/* global process */
 
 var path = require('path');
 var connect = require('node-firefox-connect');
@@ -9,7 +10,8 @@ var portfinder = require('portfinder');
 var adb = require('adbkit');
 var adbClient = adb.createClient();
 var Promise = require('es6-promise').Promise;
-var pushApp = require('./pushApp');
+var pushApp = require('push-app');
+var appPath = path.join(__dirname, 'node_modules', 'sample-packaged-app');
 
 portfinder.basePort = 9000;
 
@@ -21,12 +23,7 @@ adbClient.listDevices()
 				console.log('forwarded:', forwarded.length);
 				return Promise.all(forwarded.map(connectToDevice));
 			})
-			/*.then(function(connected) {
-				console.log('yes? ->', connected);
-				return Promise.all(connected.map(listApps));
-			})*/
 			.then(function(connected) {
-				var appPath = path.join(__dirname, 'sampleApp');
 				console.log('installing app at', appPath);
 				return Promise.all(connected.map(function(dev) {
 					return pushApp(dev.client, appPath);
