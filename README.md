@@ -2,6 +2,10 @@
 
 > Installing apps to Firefox OS devices connected via USB+ADB
 
+So far we've tested it with as much as 10 phones at the same time (connected via a USB hub). Of course they also work without a hub, but then you also have less devices to push to!
+
+**Warning:** Both node 0.12 and io.js 1.51 give a `Segmentation fault 11` error. node 0.10 works fine.
+
 ## Installation
 
 `
