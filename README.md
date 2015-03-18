@@ -20,7 +20,9 @@ installToADB(appPath) // returns a promise, results are all the apps installed o
 
 ## Demo
 
-The code in demo.js shows how to call this module. We use promises, hence the usage of `then` instead of a callback.
+The code in demo.js shows how to call this module to install a sample app in all ADB connected devices and then launch it too!
+
+We use promises, hence the usage of `then` instead of a callback.
 
 ```javascript
 var path = require('path');
