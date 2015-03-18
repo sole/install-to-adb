@@ -15,6 +15,8 @@
     "node-firefox-find-app": "^1.0.0",
     "node-firefox-install-app": "^1.0.0",
     "node-firefox-uninstall-app": "^1.0.0",
-    "portfinder": "^0.4.0"
+    "portfinder": "^0.4.0",
+    "push-app": "file:../../../../var/folders/6q/6t61v9pd1fn7cng8vfhnn3lh0000gn/T/npm-856-9bc8c3e6/git-cache-e36394191a5f/796670a40387c76318d6756c974a7a424a38285c",
+    "sample-packaged-app": "file:../../../../var/folders/6q/6t61v9pd1fn7cng8vfhnn3lh0000gn/T/npm-873-84175a4f/git-cache-9e0c399bfb36/7adcc99e33d721a85e2ad7808d6727d7a13b9a59"
   }
 }
