@@ -1,6 +1,6 @@
 {
   "name": "install-to-adb",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Installing apps to Firefox OS devices connected via USB+ADB",
   "main": "main.js",
   "bin": {
