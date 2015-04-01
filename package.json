@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Installing apps to Firefox OS devices connected via USB+ADB",
   "main": "main.js",
+  "bin": {
+    "install-to-adb": "bin/install-to-adb.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +19,7 @@
     "node-firefox-install-app": "^1.0.0",
     "node-firefox-launch-app": "^1.1.0",
     "node-firefox-uninstall-app": "^1.0.0",
+    "nopt": "^3.0.1",
     "portfinder": "^0.4.0",
     "push-app": "git+https://github.com/sole/push-app.git",
     "sample-packaged-app": "git+https://github.com/sole/sample-packaged-app.git"
