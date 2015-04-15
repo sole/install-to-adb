@@ -2,6 +2,7 @@
   "name": "install-to-adb",
   "version": "1.1.0",
   "description": "Installing apps to Firefox OS devices connected via USB+ADB",
+  "repository": "https://github.com/sole/install-to-adb/",
   "main": "main.js",
   "bin": {
     "install-to-adb": "bin/install-to-adb.js"
